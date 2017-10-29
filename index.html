@@ -2,20 +2,31 @@
 <html>
     <head>
         <script type="text/javascript"> 
-	
-		function loadDOC(){
+        
+        function display2(){
+        	
+        }
+        
+        
+		function display(key){
+			
+				
+			
 			var xhttp = new XMLHttpRequest();
 			
+		
 			 xhttp.onreadystatechange = function(){
 				if (xhttp.readyState== 4 && xhttp.status == 200){
-					alert(xhttp.responseText);
+					document.getElementById("result").innerHTML = xhttp.responseText;
 				}
 			};
-
-			xhttp.open("GET", "request.php?q=definition", true);
+			
+		
+			xhttp.open("GET", "request.php?q=" + key, true);
 			xhttp.send();
 			
-		}
+		
+	}
 		
 	</script>
 	
@@ -25,14 +36,15 @@
 <body>
 	<h1 style="background-color: purple; color: white; padding: 50px;" > Web Dictionary</h1>
 
-	<!-- <p> Lookup the definition of a word (e.g. ajax, html, bar, php, javascript or css)  </p> -->
+	<p> Lookup the definition of a word (e.g. ajax, html, bar, php, javascript or css)</p>
     
-    <!-- <div id="sumn"> --> 
+  
+	<input type="search" id="mySearch" >
 	
-	<button onclick= loadDOC()> Search </button>
+	<button onclick= display(mySearch.value)> Search </button>
 	
-	
-	<!-- </div>  -->
+	<div id = "result"></div>
+
 	
 
 	

@@ -3,9 +3,8 @@
     <head>
         <script type="text/javascript"> 
         
-        function display2(){
-        	
-        }
+      
+        
         
         
 		function display(key){
@@ -26,11 +25,126 @@
 			xhttp.send();
 			
 		
-	}
+		}
+		
+		
+			//httpRequest.open('GET', "request.php?q=&all=true"); 
+
+			//httpRequest.send(); 
+		
+	/*	window.onload function(){
+			//var getXmlButton = document.querySelector('#getxml'); 
+
+		//	getXmlButton.addEventListener('click', function() { 
+
+			//var httpRequest = new XMLHttpRequest(); 
+			
+			// GET Request 
+
+			//var url = "request.php?q=&all=true"; 
+
+		}
+
+			
+		} */
+		
+		
+			function gXml(){
+				
+				var xhttp2 = new XMLHttpRequest();
+				
+				
+				xhttp2.onreadystatechange = function(){
+					if (xhttp2.readyState === 4 && xhttp2.status === 200)  { 
+					
+					
+    
+    				// Note that we use responseXML instead of responseText 
+
+					 // when we are expecting XML data. 
+
+    				var response = xhttp2.responseXML; 
+
+    				console.log(response);
+
+    				var results = document.querySelector('.result'); 
+
+    				var people = response.getElementsByTagName('entries'); 
+
+    				var list = document.createElement('ol'); 
+
+    				results.appendChild(list); 
+
+    				for (var x = 0; x < people.length; x++) { 
+    					
+    					var person = document.createElement('li'); 
+
+						var txt = document.createTextNode(people[x].getAttribute('name'));
+
+						var ttt = document.createTextNode(people[x].getAttribute('author'));
+
+						var text = document.createTextNode(people[x].childNodes[0].nodeValue); 
+
+						person.appendChild(txt);
+
+						person.appendChild(ttt);
+
+						person.appendChild(text); 
+
+						list.appendChild(person); 
+
+					} // for loop
+					
+					} else { 
+
+						alert('There was a problem with the request.'); 
+					
+				
+				}// 1st if statement
+			
+					
+			}; 
+					
+					xhttp2.open('GET', "request.php?q=&all=true"); 
+
+				xhttp2.send(); 
+			
+		}//gXml
+		
+	
+	
+		
+		
+	// }); getXmlButton.addEventListener('click', function()
+	
+	//} */
 		
 	</script>
 	
     </head>
+    
+    
+<body>
+	<h1 style="background-color: purple; color: white; padding: 50px;" > Web Dictionary</h1>
+
+	<p> Lookup the definition of a word (e.g. ajax, html, bar, php, javascript or css)</p>
+    
+  
+	<input type="search" id="mySearch" >
+	
+	<button onclick= display(mySearch.value)> Search </button>
+	<button onclick= gXml()> Get All Definitions </button>
+	
+	
+	
+
+	<div id = "result"></div>
+		
+
+	
+
+	
+</body>
     
     
 <body>
